@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     //String URL = "https://webdev.praisindo.com/cpm.mobile/index.html";
     //String URL = "http://192.168.100.19/integria/color-meter-master/public/dashboard";
-    String URL = "https://integriaworld.com/integriadev/color_meter_operator/public/";
+    //String URL = "https://integriaworld.com/integriadev/color_meter_operator/public/";
+    String URL = "https://nutricell.my.id/color_meter/color-meter-operator/public/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -331,7 +332,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private  boolean checkAndRequestPermissions() {
         int camera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         int storage = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int storage_read = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+
         List<String> listPermissionsNeeded = new ArrayList<>();
+
+        if (storage_read != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
 
         if (camera != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.CAMERA);
